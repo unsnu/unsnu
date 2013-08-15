@@ -1,0 +1,11 @@
+!!!
+%html{lang: "ko", prefix: "og: http://ogp.me/ns#"}
+  %head
+    %title UNSNU
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    /[if lt IE 9]
+      %script{src: "http://html5shiv.googlecode.com/svn/trunk/html5.js"}
+%body
+  = yield
