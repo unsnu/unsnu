@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  snuid_digest: MyString
+  anonymous_available_date: 2013-08-15
+  anonymous_nickname: MyString
+  nickname: MyString
+
+two:
+  snuid_digest: MyString
+  anonymous_available_date: 2013-08-15
+  anonymous_nickname: MyString
+  nickname: MyString

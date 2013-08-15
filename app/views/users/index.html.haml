@@ -1,0 +1,25 @@
+%h1 Listing users
+
+%table
+  %tr
+    %th Snuid digest
+    %th Anonymous available date
+    %th Anonymous nickname
+    %th Nickname
+    %th
+    %th
+    %th
+
+  - @users.each do |user|
+    %tr
+      %td= user.snuid_digest
+      %td= user.anonymous_available_date
+      %td= user.anonymous_nickname
+      %td= user.nickname
+      %td= link_to 'Show', user
+      %td= link_to 'Edit', edit_user_path(user)
+      %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New User', new_user_path

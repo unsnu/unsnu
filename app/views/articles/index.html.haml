@@ -1,0 +1,33 @@
+%h1 Listing articles
+
+%table
+  %tr
+    %th Title
+    %th Nickname
+    %th Content
+    %th Upvote
+    %th Downvote
+    %th Comment count
+    %th Locked?
+    %th View count
+    %th
+    %th
+    %th
+
+  - @articles.each do |article|
+    %tr
+      %td= article.title
+      %td= article.nickname
+      %td= article.content
+      %td= article.upvote
+      %td= article.downvote
+      %td= article.comment_count
+      %td= article.locked?
+      %td= article.view_count
+      %td= link_to 'Show', article
+      %td= link_to 'Edit', edit_article_path(article)
+      %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Article', new_article_path

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Nickname:
+  = @comment.nickname
+%p
+  %b Content:
+  = @comment.content
+%p
+  %b Has children?:
+  = @comment.has_children?
+%p
+  %b Parent:
+  = @comment.parent
+%p
+  %b Cascade level:
+  = @comment.cascade_level
+
+= link_to 'Edit', edit_comment_path(@comment)
+\|
+= link_to 'Back', comments_path

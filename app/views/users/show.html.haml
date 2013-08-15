@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Snuid digest:
+  = @user.snuid_digest
+%p
+  %b Anonymous available date:
+  = @user.anonymous_available_date
+%p
+  %b Anonymous nickname:
+  = @user.anonymous_nickname
+%p
+  %b Nickname:
+  = @user.nickname
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path

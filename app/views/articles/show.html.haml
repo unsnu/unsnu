@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @article.title
+%p
+  %b Nickname:
+  = @article.nickname
+%p
+  %b Content:
+  = @article.content
+%p
+  %b Upvote:
+  = @article.upvote
+%p
+  %b Downvote:
+  = @article.downvote
+%p
+  %b Comment count:
+  = @article.comment_count
+%p
+  %b Locked?:
+  = @article.locked?
+%p
+  %b View count:
+  = @article.view_count
+
+= link_to 'Edit', edit_article_path(@article)
+\|
+= link_to 'Back', articles_path
