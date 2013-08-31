@@ -10,7 +10,7 @@ ko:
     attributes:
       user:
         nickname: '닉네임'
-        email: '이메일'
+        username: '아이디'
         snuid: 'SNU ID'
         snuid_digest: 'SNU ID'
         password: '비밀번호'

@@ -32,3 +32,5 @@
     - if alert
       %p.alert= alert
     = yield
+  - if Rails.env.development?
+    = debug(params)
