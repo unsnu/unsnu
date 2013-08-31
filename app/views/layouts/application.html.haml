@@ -27,4 +27,8 @@
         %p.navbar-text.pull-right
           XXX
           %a{:href => "#"} 로그아웃
+    - if notice
+      %p.notice= notice
+    - if alert
+      %p.alert= alert
     = yield
