@@ -7,5 +7,24 @@
     = csrf_meta_tags
     /[if lt IE 9]
       %script{src: "http://html5shiv.googlecode.com/svn/trunk/html5.js"}
-%body
-  = yield
+  %body
+    %nav.navbar{:role => "navigation"}
+      .navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{:href => "#"} UNSNU
+      .collapse.navbar-collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li
+            %a{:href => "#"} 자유게시판
+          %li
+            %a{:href => "#"} 익명게시판
+          %li
+            %a{:href => "#"} 생활정보
+        %p.navbar-text.pull-right
+          XXX
+          %a{:href => "#"} 로그아웃
+    = yield

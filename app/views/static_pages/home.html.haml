@@ -1,2 +1,38 @@
-%h1 StaticPages#home
-%p Find me in app/views/static_pages/home.html.haml
+.row
+  .col-md-3
+    .panel
+      .panel-heading
+        %h3.panel-title 로그인
+      %form{:role => "form"}
+        .panel-body
+          .form-group
+            %input.form-control{:placeholder => "ID", :type => "text"}/
+          .form-group
+            %input.form-control{:placeholder => "비밀번호", :type => "password"}/
+        .panel-footer
+          %button.btn.btn-default{:type => "submit"} 로그인
+    %hr
+    %div
+      %pre
+    %hr
+  .col-md-6
+    .panel
+      .panel-heading
+        %h3.panel-title 베스트
+      %ul.list-group
+        %li.list-group-item dummy
+        %li.list-group-item dummy
+        %li.list-group-item dummy
+        %li.list-group-item dummy
+    %hr
+    .panel
+      .panel-heading
+        %h3.panel-title SNU NEWS
+      %ul.list-group
+        %li.list-group-item dummy
+        %li.list-group-item dummy
+        %li.list-group-item dummy
+        %li.list-group-item dummy
+    %hr
+  .col-md-3
+    %pre
