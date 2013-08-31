@@ -2,7 +2,7 @@ Unsnu::Application.routes.draw do
   devise_for :users
   root to: "static_pages#home"
 
-  resources :users, except: :index, shallow: true do
+  resources :users, only: :show, shallow: true do
     resources :messages, only: :index
     resources :articles, only: :index
     resources :comments, only: :index

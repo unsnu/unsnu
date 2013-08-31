@@ -16,7 +16,7 @@ ko:
       unconfirmed: 인증이 필요합니다.
     mailer:
       confirmation_instructions:
-        subject: 인증 방법
+        subject: UNSNU 인증 메일입니다.
       reset_password_instructions:
         subject: 비밀번호 재설정 방법
       unlock_instructions:

@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   attr_accessor :email, :snuid
   validates :username, presence: true
-  before_create :set_email, :encrypt_snuid
+  validate :check_duplicate
+  before_validation :set_email, :encrypt_snuid
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -22,6 +23,17 @@ class User < ActiveRecord::Base
   end
 
   def encrypt_snuid
-    self.snuid_digest = Digest::SHA256.hexdigest(self.snuid)
+    self.snuid_digest = Digest::SHA256.hexdigest(self.snuid.downcase.strip)
+  end
+
+  def check_duplicate
+    confirmed_user = User.where('snuid_digest = ? AND confirmed_at IS NOT NULL', self.snuid_digest)
+    if confirmed_user.present?
+      errors.add(:base, "이미 등록된 SNU ID 입니다.")
+    end
+    same_nickname_user = User.where('nickname = ?', self.nickname)
+    if same_nickname_user.present?
+      errors.add(:base, "이미 있는 닉네임입니다.")
+    end
   end
 end

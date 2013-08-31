@@ -1,16 +1,26 @@
 .row
   .col-md-3
     .panel
-      .panel-heading
-        %h3.panel-title 로그인
-      %form{:role => "form"}
+      - unless current_user
+        .panel-heading
+          %h3.panel-title 로그인
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .panel-body
+            .form-group
+              = f.text_field :username, autofocus: true, class: 'form-control', placeholder: "ID"
+            .form-group
+              = f.password_field :password, class: 'form-control', placeholder: "비밀번호"
+          .panel-footer
+            %button.btn.btn-default{:type => "submit"} 로그인
+      - else
+        .panel-heading
+          %h3.panel-title Hello!
         .panel-body
-          .form-group
-            %input.form-control{:placeholder => "ID", :type => "text"}/
-          .form-group
-            %input.form-control{:placeholder => "비밀번호", :type => "password"}/
+          안녕하세요,
+          =current_user.nickname
+          님!
         .panel-footer
-          %button.btn.btn-default{:type => "submit"} 로그인
+          =link_to "로그아웃", destroy_user_session_path, method: :delete
     %hr
     %div
       %pre

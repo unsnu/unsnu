@@ -1,5 +1,5 @@
-<p>Welcome <%= @email %>!</p>
+<p>안녕하세요! UNSNU 인증 메일입니다.</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>UNSNU에 가입신청한 게 맞다면 아래 링크를 클릭해 주시고, 아니라면 무시해 주세요.</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to '계정 인증하기', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

@@ -24,9 +24,10 @@
             %a{:href => "#"} 익명게시판
           %li
             %a{:href => "#"} 생활정보
-        %p.navbar-text.pull-right
-          XXX
-          %a{:href => "#"} 로그아웃
+        - if current_user
+          %p.navbar-text.pull-right
+            =current_user.nickname
+            =link_to "로그아웃", destroy_user_session_path, method: :delete
     - if notice
       %p.notice= notice
     - if alert
