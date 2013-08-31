@@ -1,16 +1,25 @@
 Unsnu::Application.routes.draw do
   root to: "static_pages#home"
-  resources :messages
 
-  resources :users
+  resources :users, except: :index, shallow: true do
+    resources :messages, only: :index
+    resources :articles, only: :index
+    resources :comments, only: :index
+  end
 
-  resources :tags
+  resources :messages, except: :index
 
-  resources :comments
+  resources :tags, except: [:edit, :update]
 
-  resources :articles
+  resources :comments, except: :index
 
-  resources :boards
+  resources :boards, except: :index do
+    resources :articles, shallow: true
+  end
+
+  resources :articles, except: :index do
+    resources :comments, shallow: true
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
