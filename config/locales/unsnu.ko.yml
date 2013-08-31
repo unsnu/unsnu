@@ -1,0 +1,37 @@
+ko:
+  activerecord:
+    models:
+      user: '사용자'
+      article: '글'
+      board: '게시판'
+      comment: '댓글'
+      message: '쪽지'
+      tag: '태그'
+    attributes:
+      user:
+        nickname: '닉네임'
+        email: '이메일'
+        snuid: 'SNU ID'
+        snuid_digest: 'SNU ID'
+        password: '비밀번호'
+        password_confirmation: '비밀번호 확인'
+        encrypted_password: '비밀번호'
+      article:
+        title: '제목'
+        nickname: '닉네임'
+        content: '내용'
+        upvote: '추천'
+        downvote: '비추천'
+        comment_count: '댓글 개수'
+        view_count: '조회수'
+      board:
+        name: '이름'
+        anonymous?: '익명 여부'
+      comment:
+        nickname: '닉네임'
+        content: '내용'
+      message:
+        title: '제목'
+        content: '내용'
+      tag:
+        name: '태그 이름'
