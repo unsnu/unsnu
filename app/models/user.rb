@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   attr_accessor :email, :snuid
   validates :username, presence: true
-  before_save :set_email, :encrypt_snuid
+  before_create :set_email, :encrypt_snuid
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
