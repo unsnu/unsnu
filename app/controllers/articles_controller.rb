@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @board = Board.find(params[:board_id])
+    @articles = @board.articles
   end
 
   # GET /articles/1

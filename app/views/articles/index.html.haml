@@ -1,33 +1,21 @@
-%h1 Listing articles
+%h2= @board.name
 
-%table
+%table.table
   %tr
-    %th Title
-    %th Nickname
-    %th Content
-    %th Upvote
-    %th Downvote
-    %th Comment count
-    %th Locked?
-    %th View count
-    %th
-    %th
-    %th
-
+    %th.hidden-xs #
+    %th 제목
+    %th 추천
+    %th 글쓴이
+    %th.hidden-xs 날짜
+    %th.hidden-xs 조회수
   - @articles.each do |article|
     %tr
-      %td= article.title
-      %td= article.nickname
-      %td= article.content
+      %td.hidden-xs= article.id
+      %td= "#{article.title} [#{article.comment_count}]"
       %td= article.upvote
-      %td= article.downvote
-      %td= article.comment_count
-      %td= article.locked?
-      %td= article.view_count
-      %td= link_to 'Show', article
-      %td= link_to 'Edit', edit_article_path(article)
-      %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= article.nickname
+      %td.hidden-xs= article.created_at
+      %td.hidden-xs= article.view_count
 
-%br
-
-= link_to 'New Article', new_article_path
+.clearfix
+  = link_to '글쓰기', new_board_article_path(@board.id), class: 'btn btn-primary pull-right'
