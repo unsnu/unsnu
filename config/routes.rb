@@ -16,7 +16,9 @@ Unsnu::Application.routes.draw do
   resources :comments, except: :index
 
   resources :boards, only: :show do
-    resources :articles, shallow: true
+    resources :articles, shallow: true do
+      get 'page/:page', action: :index, on: :collection
+    end
   end
 
   resources :articles, except: :index do

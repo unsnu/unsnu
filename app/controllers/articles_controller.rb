@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @board = Board.find(params[:board_id])
-    @articles = @board.articles
+    @articles = @board.articles.page params[:page]
   end
 
   # GET /articles/1
