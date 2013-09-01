@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130901054433) do
+ActiveRecord::Schema.define(version: 20130901054933) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20130901054433) do
     t.integer  "upvote"
     t.integer  "downvote"
     t.integer  "comment_count"
-    t.boolean  "locked?"
+    t.boolean  "locked"
     t.integer  "view_count"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20130901054433) do
 
   create_table "boards", force: true do |t|
     t.string   "name"
-    t.boolean  "anonymous?"
+    t.boolean  "anonymous"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20130901054433) do
   create_table "comments", force: true do |t|
     t.string   "nickname"
     t.string   "content"
-    t.boolean  "has_children?"
+    t.boolean  "has_children"
     t.integer  "parent_id"
     t.integer  "cascade_level"
     t.datetime "created_at"
