@@ -1,7 +1,7 @@
 Unsnu::Application.routes.draw do
   devise_for :users
   root to: "static_pages#home"
-  get '/admin', to: 'boards#index', as: 'boards'
+  resources :boards, path: 'admin'
 
   resources :users, only: :show, shallow: true do
     resources :messages, only: :index
@@ -15,7 +15,7 @@ Unsnu::Application.routes.draw do
 
   resources :comments, except: :index
 
-  resources :boards, except: [:index, :destroy] do
+  resources :boards, only: :show do
     resources :articles, shallow: true
   end
 

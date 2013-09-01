@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :auth_admin, except: :show
 
   # GET /boards
   # GET /boards.json
@@ -10,6 +11,7 @@ class BoardsController < ApplicationController
   # GET /boards/1
   # GET /boards/1.json
   def show
+    redirect_to board_articles_path(params[:id])
   end
 
   # GET /boards/new
@@ -28,7 +30,7 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to @board, notice: 'Board was successfully created.' }
+        format.html { redirect_to boards_path, notice: 'Board was successfully created.' }
         format.json { render action: 'show', status: :created, location: @board }
       else
         format.html { render action: 'new' }
@@ -70,5 +72,11 @@ class BoardsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
       params.require(:board).permit(:name, :anonymous)
+    end
+
+    def auth_admin
+      unless current_user.admin?
+        redirect_to root_path
+      end
     end
 end

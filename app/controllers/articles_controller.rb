@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :auth_user
 
   # GET /articles
   # GET /articles.json
@@ -15,7 +16,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article = Board.find(params[:board_id]).articles.new
   end
 
   # GET /articles/1/edit
@@ -26,6 +27,12 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
+    if @article.board.anonymous?
+      @article.nickname = current_user.anonymous_nickname
+    else
+      @article.nickname = current_user.nickname
+    end
 
     respond_to do |format|
       if @article.save
@@ -70,6 +77,18 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :nickname, :content, :upvote, :downvote, :comment_count, :locked?, :view_count)
+      params.require(:article).permit(:title, :nickname, :content, :upvote, :downvote, :comment_count, :locked, :view_count, :board_id)
+    end
+
+    def auth_user
+      unless current_user
+        redirect_to root_path
+      end
+
+      unless current_user.anonymous_available_date == Date.today
+        current_user.anonymous_nickname = SecureRandom.hex(4)
+        current_user.anonymous_available_date = Date.today
+        current_user.save
+      end
     end
 end

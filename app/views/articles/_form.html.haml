@@ -6,29 +6,12 @@
         - @article.errors.full_messages.each do |msg|
           %li= msg
 
+  = f.hidden_field :board_id
   .field
     = f.label :title
     = f.text_field :title
   .field
-    = f.label :nickname
-    = f.text_field :nickname
-  .field
     = f.label :content
     = f.text_area :content
-  .field
-    = f.label :upvote
-    = f.number_field :upvote
-  .field
-    = f.label :downvote
-    = f.number_field :downvote
-  .field
-    = f.label :comment_count
-    = f.number_field :comment_count
-  .field
-    = f.label :locked?
-    = f.check_box :locked?
-  .field
-    = f.label :view_count
-    = f.number_field :view_count
   .actions
-    = f.submit 'Save'
+    = f.submit '저장', class: 'btn btn-primary'
