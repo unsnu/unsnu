@@ -20,9 +20,9 @@
         .collapse.navbar-collapse.navbar-menu-collapse
           %ul.nav.navbar-nav
             %li
-              %a{:href => "#"} 자유게시판
+              = link_to "자유게시판", board_articles_path(1)
             %li
-              %a{:href => "#"} 익명게시판
+              = link_to "익명게시판", board_articles_path(2)
             %li
               %a{:href => "#"} 생활정보
           - if current_user

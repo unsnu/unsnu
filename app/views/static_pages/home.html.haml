@@ -15,7 +15,10 @@
                   %span.sr-only 비밀번호
                   = f.password_field :password, class: 'form-control', placeholder: "비밀번호"
           .panel-footer
-            %button.btn.btn-default{:type => "submit"} 로그인
+            .pull-right
+              %button.btn.btn-default{:type => "submit"} 로그인
+              = link_to "회원가입", new_user_registration_path, class: "btn btn-default"
+            .clearfix
       - else
         .panel-heading
           %h3.panel-title Hello!
