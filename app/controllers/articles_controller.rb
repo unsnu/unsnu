@@ -83,12 +83,12 @@ class ArticlesController < ApplicationController
     def auth_user
       unless current_user
         redirect_to root_path
-      end
-
-      unless current_user.anonymous_available_date == Date.today
-        current_user.anonymous_nickname = SecureRandom.hex(4)
-        current_user.anonymous_available_date = Date.today
-        current_user.save
+      else
+        unless current_user.anonymous_available_date == Date.today
+          current_user.anonymous_nickname = SecureRandom.hex(4)
+          current_user.anonymous_available_date = Date.today
+          current_user.save
+        end
       end
     end
 end

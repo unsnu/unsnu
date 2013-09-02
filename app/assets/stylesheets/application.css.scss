@@ -12,3 +12,24 @@
  *= require_tree .
  */
 @import "twitter/bootstrap";
+
+.panel-heading {
+	padding: 5px;
+	background-color: #fff;
+	border-bottom: 1px solid #000;
+}
+.panel-footer {
+	background-color: #fff;
+}
+.panel-title {
+	font-size: 24px;
+}
+.navbar-nav {
+	font-size: 17px;
+}
+.navbar-brand {
+	font-size: 20px;
+}
+.icon-bar {
+	background-color: whitesmoke;
+}

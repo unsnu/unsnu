@@ -6,12 +6,14 @@
           %h3.panel-title 로그인
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .panel-body
-            .form-group
-              %span.sr-only ID
-              = f.text_field :username, autofocus: true, class: 'form-control', placeholder: "ID"
-            .form-group
-              %span.sr-only 비밀번호
-              = f.password_field :password, class: 'form-control', placeholder: "비밀번호"
+            .row
+              .col-md-12.col-xs-9
+                .form-group
+                  %span.sr-only ID
+                  = f.text_field :username, autofocus: true, class: 'form-control', placeholder: "ID"
+                .form-group
+                  %span.sr-only 비밀번호
+                  = f.password_field :password, class: 'form-control', placeholder: "비밀번호"
           .panel-footer
             %button.btn.btn-default{:type => "submit"} 로그인
       - else
@@ -36,11 +38,13 @@
         %li.list-group-item dummy
         %li.list-group-item dummy
         %li.list-group-item dummy
+        %li.list-group-item dummy
     %hr
     .panel
       .panel-heading
         %h3.panel-title SNU NEWS
       %ul.list-group
+        %li.list-group-item dummy
         %li.list-group-item dummy
         %li.list-group-item dummy
         %li.list-group-item dummy
