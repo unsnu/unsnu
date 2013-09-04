@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    auth_privilege
   end
 
   # POST /articles
@@ -49,6 +50,8 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    auth_privilege
+
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
@@ -79,6 +82,8 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
+    auth_privilege
+
     @article.destroy
     respond_to do |format|
       format.html { redirect_to articles_url }
@@ -106,6 +111,12 @@ class ArticlesController < ApplicationController
           current_user.anonymous_available_date = Date.today
           current_user.save
         end
+      end
+    end
+
+    def auth_privilege
+      unless current_user == @article.user || current_user.admin?
+        redirect_to @article
       end
     end
 end

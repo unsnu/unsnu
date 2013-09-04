@@ -13,7 +13,7 @@
     .vote.text-center
       = link_to "추천", upvote_article_path(@article), id: "upvote", class: "btn btn-default", method: :patch
       = link_to "비추천", downvote_article_path(@article), id: "downvote", class: "btn btn-default", method: :patch
-    - if @article.user == current_user
+    - if @article.user == current_user || current_user.admin?
       .toolbox.pull-right
         = link_to "수정", edit_article_path(@article), class: "btn btn-default", id: "upvote"
         = link_to "삭제", @article, method: :delete, data: { confirm: "삭제하시겠습니까?" }, class: "btn btn-default", id: "downvote"
