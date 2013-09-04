@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   before_create :set_email, :encrypt_snuid
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_many :voted_articles, foreign_key: 'user_id', class_name: 'ArticleVote'
 
   def email_required?
     false

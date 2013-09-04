@@ -17,6 +17,14 @@
       .toolbox.pull-right
         = link_to "수정", edit_article_path(@article), class: "btn btn-default", id: "upvote"
         = link_to "삭제", @article, method: :delete, data: { confirm: "삭제하시겠습니까?" }, class: "btn btn-default", id: "downvote"
-.pull-right
-  = link_to "목록 보기", board_articles_path(@article.board), class: "btn btn-default"
-.clearfix
+      .clearfix
+    %ul
+      - @article.comments.each do |comment|
+        %li
+          = "#{comment.nickname}: #{comment.content}"
+          - if current_user == comment.user
+            = link_to "x", comment, method: :delete
+    = form_for @comment do |f|
+      = f.hidden_field :article_id, value: @article.id
+      = f.text_field :content
+      = f.submit

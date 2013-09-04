@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     Article.increment_counter(:view_count, @article)
+    @comment = Comment.new
   end
 
   # GET /articles/new
@@ -64,17 +65,33 @@ class ArticlesController < ApplicationController
   end
 
   def upvote
-    Article.increment_counter(:upvote, @article)
+    unless already_voted?
+      Article.increment_counter(:upvote, @article)
+      vote = @article.voted_users.new(user_id: current_user.id)
+      vote.save
+      notice = "추천되었습니다."
+    else
+      notice = "이미 추천/반대하셨습니다."
+    end
+
     respond_to do |format|
-      format.html { redirect_to @article, notice: '추천되었습니다.' }
+      format.html { redirect_to @article, notice: notice }
       format.json { render json: @article.upvote }
     end
   end
 
   def downvote
-    Article.increment_counter(:downvote, @article)
+    unless already_voted?
+      Article.increment_counter(:downvote, @article)
+      vote = @article.voted_users.new(user_id: current_user.id)
+      vote.save
+      notice = "반대되었습니다"
+    else
+      notice = "이미 추천/반대하셨습니다."
+    end
+
     respond_to do |format|
-      format.html { redirect_to @article, notice: '비추천되었습니다.' }
+      format.html { redirect_to @article, notice: notice }
       format.json { render json: @article.downvote }
     end
   end
@@ -117,6 +134,14 @@ class ArticlesController < ApplicationController
     def auth_privilege
       unless current_user == @article.user || current_user.admin?
         redirect_to @article
+      end
+    end
+
+    def already_voted?
+      if @article.voted_users.where(user_id: current_user.id).present?
+        true
+      else
+        false
       end
     end
 end
