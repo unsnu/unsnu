@@ -22,6 +22,10 @@ Unsnu::Application.routes.draw do
   end
 
   resources :articles, except: :index do
+    member do
+      patch 'upvote', as: 'upvote', to: 'articles#upvote'
+      patch 'downvote', as: 'downvote', to: 'articles#downvote'
+    end
     resources :comments, shallow: true
   end
 

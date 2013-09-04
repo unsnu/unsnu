@@ -1,17 +1,18 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :auth_user
 
   # GET /articles
   # GET /articles.json
   def index
     @board = Board.find(params[:board_id])
-    @articles = @board.articles.page params[:page]
+    @articles = @board.articles.order("created_at DESC").page params[:page]
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    Article.increment_counter(:view_count, @article)
   end
 
   # GET /articles/new
@@ -56,6 +57,22 @@ class ArticlesController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def upvote
+    Article.increment_counter(:upvote, @article)
+    respond_to do |format|
+      format.html { redirect_to @article, notice: '추천되었습니다.' }
+      format.json { render json: @article.upvote }
+    end
+  end
+
+  def downvote
+    Article.increment_counter(:downvote, @article)
+    respond_to do |format|
+      format.html { redirect_to @article, notice: '비추천되었습니다.' }
+      format.json { render json: @article.downvote }
     end
   end
 

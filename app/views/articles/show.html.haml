@@ -1,30 +1,22 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @article.title
-%p
-  %b Nickname:
-  = @article.nickname
-%p
-  %b Content:
-  = @article.content
-%p
-  %b Upvote:
-  = @article.upvote
-%p
-  %b Downvote:
-  = @article.downvote
-%p
-  %b Comment count:
-  = @article.comment_count
-%p
-  %b Locked?:
-  = @article.locked?
-%p
-  %b View count:
-  = @article.view_count
-
-= link_to 'Edit', edit_article_path(@article)
-\|
-= link_to 'Back', articles_path
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title= @article.title
+  .panel-body
+    .pull-right
+      %span= @article.created_at.getlocal.strftime("%Y-%m-%d %H:%M:%S")
+      %span
+        = "up: #{@article.upvote}"
+        = "down: #{@article.downvote}"
+    .clearfix
+    .content
+      = @article.content
+    .vote.text-center
+      = link_to "추천", upvote_article_path(@article), id: "upvote", class: "btn btn-default", method: :patch
+      = link_to "비추천", downvote_article_path(@article), id: "downvote", class: "btn btn-default", method: :patch
+    - if @article.user == current_user
+      .toolbox.pull-right
+        = link_to "수정", edit_article_path(@article), class: "btn btn-default", id: "upvote"
+        = link_to "삭제", @article, method: :delete, data: { confirm: "삭제하시겠습니까?" }, class: "btn btn-default", id: "downvote"
+.pull-right
+  = link_to "목록 보기", board_articles_path(@article.board), class: "btn btn-default"
+.clearfix

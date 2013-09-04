@@ -4,17 +4,19 @@
   %tr
     %th.hidden-xs #
     %th 제목
-    %th 추천
+    %th.hidden-xs 추천
     %th 글쓴이
     %th.hidden-xs 날짜
     %th.hidden-xs 조회수
   - @articles.each do |article|
     %tr
       %td.hidden-xs= article.id
-      %td= "#{article.title} [#{article.comment_count}]"
-      %td= article.upvote
+      %td
+        = link_to article.title, article
+        = "[#{article.comment_count}]"
+      %td.hidden-xs= article.upvote
       %td= article.nickname
-      %td.hidden-xs= article.created_at
+      %td.hidden-xs= article.created_at.getlocal.strftime("%Y-%m-%d")
       %td.hidden-xs= article.view_count
 
 .clearfix
