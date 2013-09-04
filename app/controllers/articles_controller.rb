@@ -14,6 +14,8 @@ class ArticlesController < ApplicationController
   def show
     Article.increment_counter(:view_count, @article)
     @comment = Comment.new
+    index = @article.page_num(by: :created_at, order: :desc)
+    @articles = @article.board.articles.order("created_at DESC").page(index)
   end
 
   # GET /articles/new

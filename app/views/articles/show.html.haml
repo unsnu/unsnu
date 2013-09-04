@@ -1,6 +1,8 @@
 .panel.panel-default
   .panel-heading
-    %h3.panel-title= @article.title
+    %h3.panel-title.pull-left= @article.title
+    %span.pull-right= @article.nickname
+    .clearfix
   .panel-body
     .pull-right
       %span= @article.created_at.getlocal.strftime("%Y-%m-%d %H:%M:%S")
@@ -28,3 +30,4 @@
       = f.hidden_field :article_id, value: @article.id
       = f.text_field :content
       = f.submit
+= render partial: 'list', locals: { articles: @articles, board: @article.board }
