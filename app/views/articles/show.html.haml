@@ -25,7 +25,7 @@
         %li
           = "#{comment.nickname}: #{comment.content}"
           - if current_user == comment.user
-            = link_to "x", comment, method: :delete
+            = link_to "x", comment, method: :delete, data: { confirm: "삭제하시겠습니까?" }
     = form_for @comment do |f|
       = f.hidden_field :article_id, value: @article.id
       = f.text_field :content
